@@ -1,4 +1,5 @@
 #include "lists.h"
+#include <stdio.h>
 /**
  * check_cycle - Checks if a singly-linked list contains a cycle.
  * @list: A singly-linked list.
@@ -8,22 +9,25 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *p_list, *n_list;
+	listint_t *p_list = list;
+	listint_t *n_list = list;
 
-	if (list == NULL || list->next == NULL)
+	if (!list)
 		return (0);
 
-	p_list = list->next;
-	n_list = list->next->next;
-
-	while (p_list && n_list && n_list->list)
+	while (1)
 	{
-		if (p_list == n_list)
-			return (1);
+		/*traverse through nodes as long as linked list node exists*/
+		if (p_list->next != NULL && p_list->next->next != NULL)
+		{
+			p_list = p_list->next->next;
+			n_list = n_list->next;
 
-		p_list = p_list->next;
-		n_list = p_list->next->next;
+			if (p_list == n_list) /*if nodes match, cycle found*/
+				return (1);
+		}
+		else
+			return (0);
 	}
 
-	return (0);
 }
