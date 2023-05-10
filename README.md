@@ -1,1 +1,1 @@
-Each file in this repository holds code that illustrates an essential concept of programming, specific to the Python programming language: if/elif/else loops, range, ord(), chr(), modulo, copy of string, bytecode
+This repository was made to understand object oriented programming. Each repo in this repository holds code that illustrates an essential concept of programming, specific to Python, as well as other higher level concepts such as networking, databases, and Restful API's.
