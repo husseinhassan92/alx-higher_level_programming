@@ -59,17 +59,15 @@ class SinglyLinkedList:
         """sort the link list by order"""
         new = Node(value)
         if self.__head is None:
+            new.next_node = None
             self.__head = new
-            return
-
-        tmp = self.__head
-        if new.data < tmp.data:
+        elif self.__head.data > value:
             new.next_node = self.__head
             self.__head = new
-            return
-
-        while (tmp.next_node is not None) and (new.data > tmp.next_node.data):
-            tmp = tmp.next_node
-        new.next_node = tmp.next_node
-        tmp.next_node = new
-        return
+        else:
+            tmp = self.__head
+            while (tmp.next_node is not None and
+                    tmp.next_node.data < value):
+                tmp = tmp.next_node
+            new.next_node = tmp.next_node
+            tmp.next_node = new
