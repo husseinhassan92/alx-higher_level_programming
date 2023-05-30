@@ -1,0 +1,1 @@
+Each file in this repository holds code that illustrates an essential concept of programming, specific to the Python programming language: classes, instances, private/public fields/attributes, methods/functions, __str__ to print, comparator methods (!= __ne__, == __eq__, >= __ge__, > __gt__, < __lt__, <= __lt__)
