@@ -9,12 +9,14 @@ class Square:
         """initiating square class"""
         self.__size = size
 
+    @property
     def size(self):
         """
         return size of square
         """
         return self.__size
 
+    @size.setter
     def size(self, value):
         """
         setting the size of square
