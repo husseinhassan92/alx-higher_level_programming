@@ -32,7 +32,7 @@ class Node:
         """return next node"""
         return self.__next_node
 
-    @data.setter
+    @next_node.setter
     def next_node(self, value):
         """setting next node"""
         if not isinstance(value, Node) and value is not None:
@@ -59,15 +59,14 @@ class SinglyLinkedList:
         """sort the link list by order"""
         new = Node(value)
         if self.__head is None:
-            new.next_node = None
             self.__head = new
-        elif self.__head.data > value:
+
+        tmp = self.__head
+        if new.data < tmp.data:
             new.next_node = self.__head
             self.__head = new
-        else:
-            tmp = self.__head
-            while (tmp.next_node is not None and
-                    tmp.next_node.data < value):
-                tmp = tmp.next_node
-            new.next_node = tmp.next_node
-            tmp.next_node = new
+
+        while (tmp.next_node is not None) and (new.data > tmp.next_node.data):
+            tmp = tmp.next_node
+        new.next_node = tmp.next_node
+        tmp.next_node = new
