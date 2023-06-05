@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """
-Module 2-rectangle
 Contains class Rectangle
 with private attribute width and height
 """
@@ -21,8 +20,8 @@ class Rectangle:
     """
     def __init__(self, width=0, height=0):
         """ Initialize rectangles """
-        self.width = width
-        self.height = height
+        self.__width = width
+        self.__height = height
 
     @property
     def width(self):
