@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
 Contains class Rectangle
-with private attribute width and height and area , perimeter
+with private attribute width and height
+and public area and perimeter methods
 """
 
 
@@ -53,15 +54,13 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         self.__height = value
 
+    def area(self):
+        """ Return width * height """
+        return self.__width * self.__height
 
-def area(self):
-    """ Return width * height """
-    return self.__width * self.__height
-
-
-def perimeter(self):
-    """ Return 2*width + 2*height (or return 0 if width or height is 0)"""
-    if self.__width == 0 or self.__height == 0:
-        return 0
-    else:
-        return (2 * self.__width) + (2 * self.__height)
+    def perimeter(self):
+        """ Return 2*width + 2*height (or return 0 if width or height is 0)"""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        else:
+            return (2 * self.__width) + (2 * self.__height)
