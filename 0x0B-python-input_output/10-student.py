@@ -26,7 +26,7 @@ class Student:
         Returns dictionary description with simple data structure
         for JSON serialization of an object
         """
-        if attrs is None:
+        if attrs == None:
             return self.__dict__
         else:
             attr = {}
