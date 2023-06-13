@@ -12,7 +12,6 @@ def to_json_string(my_obj):
     Return:
         json string representation
     """
-
     import json
 
     return json.dumps(my_obj)
