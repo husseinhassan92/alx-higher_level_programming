@@ -9,6 +9,7 @@ def load_from_json_file(filename):
     Args:
         filename: file
     """
+    import json
 
     with open(filename, 'r') as f:
         return json.load(f)
