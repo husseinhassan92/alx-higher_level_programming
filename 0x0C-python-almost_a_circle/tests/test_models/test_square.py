@@ -103,3 +103,8 @@ class TestSquare(unittest.TestCase):
             r.update(10, -10, 10, 10)
         r.update(no_id = 10, n_size = 10, x = 5, y = 4)
         self.assertEqual(str(r), '[Square] (10) 5/4 - 10')
+
+    def test_to_dictionary(self):
+        """test to_dictionary method"""
+        s1 = Square(10, 1, 9).to_dictionary()
+        self.assertTrue(isinstance(s1, dict))

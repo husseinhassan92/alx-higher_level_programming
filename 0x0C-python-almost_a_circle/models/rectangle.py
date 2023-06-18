@@ -84,8 +84,8 @@ class Rectangle(Base):
     def display(self):
         """Print to stdout a rectangle using #'s"""
         print("\n" * self.y +
-                "\n".join((" " * self.x + "#" * self.width)
-                          for i in range(self.height)))
+              "\n".join((" " * self.x + "#" * self.width)
+                        for i in range(self.height)))
 
     def __str__(self):
         """print the rectangle info"""
@@ -118,3 +118,13 @@ class Rectangle(Base):
                 self.x = kwargs["x"]
             if "y" in kwargs:
                 self.y = kwargs["y"]
+
+    def to_dictionary(self):
+        """ return dict of attrs"""
+        dic = {}
+        dic["id"] = self.id
+        dic["width"] = self.width
+        dic["height"] = self.height
+        dic["x"] = self.x
+        dic["y"] = self.y
+        return dic

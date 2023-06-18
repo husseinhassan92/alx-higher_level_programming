@@ -137,3 +137,9 @@ class TestRectangle(unittest.TestCase):
             r.update(10, -10, 10, 10, 10)
         r.update(no_id = 10, n_width = 10, height = 2, x = 5, y = 4)
         self.assertEqual(str(r), '[Rectangle] (10) 5/4 - 10/2')
+
+    def test_to_dictionary(self):
+        """test to_dictionary method"""
+        r1 = Rectangle(10, 2, 1, 9).to_dictionary()
+        self.assertTrue(isinstance(r1, dict))
+
