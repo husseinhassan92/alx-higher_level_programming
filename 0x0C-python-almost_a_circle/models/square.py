@@ -15,4 +15,42 @@ class Square(Rectangle):
         """ Initialize rectangle class"""
         super().__init__( size, size, x, y, id)
 
+    @property
+    def size(self):
+        """getter size"""
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """setter size"""
+        self.width = value
+        self.height = value
+
+    def __str__(self):
+        """print the square info"""
+        return "[{}] ({}) {}/{} - {}".format(
+            self.__class__.__name__, self.id, self.x,
+            self.y, self.size)
+
+    def update(self, *args, **kwargs):
+        """ update thd square attr"""
+        if args:
+            for i, v in enumerate(args):
+                if i == 0:
+                    self.id = v
+                elif i == 1:
+                    self.size = v
+                elif i == 2:
+                    self.x = v
+                else:
+                    self.y = v
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "size" in kwargs:
+                self.size = kwargs["size"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
     

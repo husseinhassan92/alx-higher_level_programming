@@ -16,7 +16,8 @@ from models.rectangle import Rectangle
 class TestRectangle(unittest.TestCase):
     """Test class created is indeed Rectangle"""
     def test_rectangle_class(self):
-        self.assertEqual(type(Rectangle(3,4)), Rectangle)
+        """test rectangle class"""
+        self.assertEqual(type(Rectangle(3, 4)), Rectangle)
         self.assertTrue(isinstance(Rectangle(3,4), Base))
         self.assertTrue(issubclass(Rectangle, Base))
 
@@ -136,13 +137,3 @@ class TestRectangle(unittest.TestCase):
             r.update(10, -10, 10, 10, 10)
         r.update(no_id = 10, n_width = 10, height = 2, x = 5, y = 4)
         self.assertEqual(str(r), '[Rectangle] (10) 5/4 - 10/2')
-        
-
-
-
-
-
-
-
-
-
