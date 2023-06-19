@@ -8,7 +8,6 @@ import json
 import csv
 
 
-
 class Base:
     """
     defines class Base

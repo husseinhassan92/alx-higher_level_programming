@@ -20,7 +20,6 @@ class TestSquare(unittest.TestCase):
         self.assertTrue(isinstance(Square(3), Rectangle))
         self.assertTrue(issubclass(Square, Rectangle))
 
-
     def test_all_atrr(self):
         """Test all attributes match what's given"""
         r = Square(3, 2, 2, 100)
@@ -48,13 +47,14 @@ class TestSquare(unittest.TestCase):
         """Test attributes are validated before set"""
         with self.assertRaisesRegex(TypeError, "width must be an intger"):
             Square("2")
-            Square([1])    
+            Square([1])
         with self.assertRaisesRegex(TypeError, "x must be an intger"):
             Square(3, None)
             Square(3, 5.5)
         with self.assertRaisesRegex(TypeError, "y must be an intger"):
             Square(3, 5, (2, 2))
-        with self.assertRaisesRegex(ValueError, "width must be greater than zero"):
+        with self.assertRaisesRegex(ValueError,
+                                    "width must be greater than zero"):
             Square(-3, 2, 2, 100)
         with self.assertRaisesRegex(ValueError, "x must be greater than zero"):
             Square(3, -2, 2, 100)
@@ -89,19 +89,20 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(r), '[Square] (5) 3/10 - 4')
         r.update(5, 4, 3, 2)
         self.assertEqual(str(r), '[Square] (5) 3/2 - 4')
-        r.update(id = 10)
+        r.update(id=10)
         self.assertEqual(str(r), '[Square] (10) 3/2 - 4')
-        r.update(id = 10, size = 10)
+        r.update(id=10, size=10)
         self.assertEqual(str(r), '[Square] (10) 3/2 - 10')
-        r.update(id = 10, size = 10, x = 10)
+        r.update(id=10, size=10, x=10)
         self.assertEqual(str(r), '[Square] (10) 10/2 - 10')
-        r.update(id = 10, size = 10, x = 10, y = 10)
+        r.update(id=10, size=10, x=10, y=10)
         self.assertEqual(str(r), '[Square] (10) 10/10 - 10')
         with self.assertRaisesRegex(TypeError, "width must be an intger"):
             r.update(10, "10", 10, 10)
-        with self.assertRaisesRegex(ValueError, "width must be greater than zero"):
+        with self.assertRaisesRegex(ValueError,
+                                    "width must be greater than zero"):
             r.update(10, -10, 10, 10)
-        r.update(no_id = 10, n_size = 10, x = 5, y = 4)
+        r.update(no_id=10, n_size=10, x=5, y=4)
         self.assertEqual(str(r), '[Square] (10) 5/4 - 10')
 
     def test_to_dictionary(self):

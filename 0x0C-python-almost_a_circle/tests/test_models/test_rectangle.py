@@ -18,7 +18,7 @@ class TestRectangle(unittest.TestCase):
     def test_rectangle_class(self):
         """test rectangle class"""
         self.assertEqual(type(Rectangle(3, 4)), Rectangle)
-        self.assertTrue(isinstance(Rectangle(3,4), Base))
+        self.assertTrue(isinstance(Rectangle(3, 4), Base))
         self.assertTrue(issubclass(Rectangle, Base))
 
     def test_all_atrr(self):
@@ -54,15 +54,17 @@ class TestRectangle(unittest.TestCase):
             Rectangle([1], 3)
         with self.assertRaisesRegex(TypeError, "height must be an intger"):
             Rectangle(3, {4})
-            Rectangle(3, {"h" : 4})
+            Rectangle(3, {"h": 4})
         with self.assertRaisesRegex(TypeError, "x must be an intger"):
             Rectangle(3, 4, None)
             Rectangle(3, 4, 5.5)
         with self.assertRaisesRegex(TypeError, "y must be an intger"):
             Rectangle(3, 4, 5, (2, 2))
-        with self.assertRaisesRegex(ValueError, "width must be greater than zero"):
+        with self.assertRaisesRegex(ValueError,
+                                    "width must be greater than zero"):
             Rectangle(-3, 4, 2, 2, 100)
-        with self.assertRaisesRegex(ValueError, "height must be greater than zero"):
+        with self.assertRaisesRegex(ValueError,
+                                    "height must be greater than zero"):
             Rectangle(3, -4, 2, 2, 100)
         with self.assertRaisesRegex(ValueError, "x must be greater than zero"):
             Rectangle(3, 4, -2, 2, 100)
@@ -85,9 +87,9 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(Rectangle(3, 4, 1, 1).area(), 12)
         self.assertEqual(Rectangle(3, 4, 1, 1, 100).area(), 12)
         with self.assertRaises(TypeError):
-            r = Rectangle(3,4)
+            r = Rectangle(3, 4)
             r.area(3)
-            r.area(3,4)
+            r.area(3, 4)
 
     def test_display(self):
         """Test method: display"""
@@ -102,8 +104,10 @@ class TestRectangle(unittest.TestCase):
 
     def test_str(self):
         """test print the rectangle attrs"""
-        self.assertEqual(str(Rectangle(4, 6, 2, 1, 12)), "[Rectangle] (12) 2/1 - 4/6")
-        self.assertEqual(str(Rectangle(5, 5, 1, 0, 1)), "[Rectangle] (1) 1/0 - 5/5")
+        self.assertEqual(str(Rectangle(4, 6, 2, 1, 12)),
+                         "[Rectangle] (12) 2/1 - 4/6")
+        self.assertEqual(str(Rectangle(5, 5, 1, 0, 1)),
+                         "[Rectangle] (1) 1/0 - 5/5")
 
     def test_update(self):
         """test update attr func by args & kwargs"""
@@ -121,25 +125,25 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r), '[Rectangle] (5) 2/10 - 4/3')
         r.update(5, 4, 3, 2, 1)
         self.assertEqual(str(r), '[Rectangle] (5) 2/1 - 4/3')
-        r.update(id = 10)
+        r.update(id=10)
         self.assertEqual(str(r), '[Rectangle] (10) 2/1 - 4/3')
-        r.update(id = 10, width = 10)
+        r.update(id=10, width=10)
         self.assertEqual(str(r), '[Rectangle] (10) 2/1 - 10/3')
-        r.update(id = 10, width = 10, height = 10)
+        r.update(id=10, width=10, height=10)
         self.assertEqual(str(r), '[Rectangle] (10) 2/1 - 10/10')
-        r.update(id = 10, width = 10, height = 10, x = 10)
+        r.update(id=10, width=10, height=10, x=10)
         self.assertEqual(str(r), '[Rectangle] (10) 10/1 - 10/10')
-        r.update(id = 10, width = 10, height = 10, x = 10, y = 10)
+        r.update(id=10, width=10, height=10, x=10, y=10)
         self.assertEqual(str(r), '[Rectangle] (10) 10/10 - 10/10')
         with self.assertRaisesRegex(TypeError, "width must be an intger"):
             r.update(10, "10", 10, 10, 10)
-        with self.assertRaisesRegex(ValueError, "width must be greater than zero"):
+        with self.assertRaisesRegex(ValueError,
+                                    "width must be greater than zero"):
             r.update(10, -10, 10, 10, 10)
-        r.update(no_id = 10, n_width = 10, height = 2, x = 5, y = 4)
+        r.update(no_id=10, n_width=10, height=2, x=5, y=4)
         self.assertEqual(str(r), '[Rectangle] (10) 5/4 - 10/2')
 
     def test_to_dictionary(self):
         """test to_dictionary method"""
         r1 = Rectangle(10, 2, 1, 9).to_dictionary()
         self.assertTrue(isinstance(r1, dict))
-

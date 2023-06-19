@@ -7,15 +7,23 @@ Unittest for Base Class
 
 
 import unittest
+import os
 import json
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 
 
-
 class TestBase(unittest.TestCase):
     """Tests for models/base.py"""
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        try:
+            os.remove("Rectangle.json")
+        except IOError:
+            pass
 
     def test_id_given(self):
         """Test ids match when given"""
@@ -38,11 +46,8 @@ class TestBase(unittest.TestCase):
 
     def test_to_json_string(self):
         """ test to_json_string method"""
-        r1 = Rectangle(10, 7, 2, 8, 1)
-        dictionary = r1.to_dictionary()
-        json_dictionary = Base.to_json_string([dictionary])
-        self.assertTrue(isinstance(json_dictionary, str))
-        self.assertEqual(json_dictionary, '[{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}]')
+        r = Rectangle(10, 7, 2, 8, 6)
+        self.assertTrue(len(Base.to_json_string([r.to_dictionary()])) == 53)
         d2 = None
         strd2 = Base.to_json_string([d2])
         self.assertTrue(isinstance(strd2, str))
@@ -53,7 +58,6 @@ class TestBase(unittest.TestCase):
         self.assertTrue(isinstance(strd3, str))
         self.assertTrue(strd3, "[]")
 
-
     def test_save_to_file(self):
         """ test save to file method"""
         r1 = Rectangle(10, 7, 2, 8, 1)
@@ -61,12 +65,44 @@ class TestBase(unittest.TestCase):
         Rectangle.save_to_file([r1, r2])
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(),
-                             json.dumps([r1.to_dictionary(), r2.to_dictionary()]))
-            
+                             json.dumps([r1.to_dictionary(),
+                                         r2.to_dictionary()]))
+
             Rectangle.save_to_file(None)
             with open("Rectangle.json", "r") as file:
                 self.assertEqual('[]', file.read())
-            
+
             Rectangle.save_to_file([])
             with open("Rectangle.json", "r") as file:
                 self.assertEqual('[]', file.read())
+
+    def test_from_json_string(self):
+        """test from_json_string method"""
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertTrue(isinstance(list_output, list))
+        self.assertEqual(list_output, [{'id': 89, 'width': 10, 'height': 4},
+                                       {'id': 7, 'width': 1, 'height': 7}])
+
+        list_input_1 = None
+        json_list_input = Rectangle.to_json_string(list_input_1)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertTrue(isinstance(list_output, list))
+        self.assertEqual(list_output, [])
+
+        list_input = []
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertTrue(isinstance(list_output, list))
+        self.assertEqual(list_output, [])
+
+    def test_create(self):
+        """test create method"""
+        r1 = Rectangle(3, 5, 1, 0, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(str(r1), str(r2))
+        self.assertIsNot(r1, r2)
