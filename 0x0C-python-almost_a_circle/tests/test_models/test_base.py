@@ -106,3 +106,22 @@ class TestBase(unittest.TestCase):
         r2 = Rectangle.create(**r1_dictionary)
         self.assertEqual(str(r1), str(r2))
         self.assertIsNot(r1, r2)
+
+    def test_save_to_file_csv_one_rectangle(self):
+        """test save to csv file method"""
+        r = Rectangle(10, 7, 2, 8, 5)
+        Rectangle.save_to_file_csv([r])
+        with open("Rectangle.csv", "r") as f:
+            self.assertTrue("5,10,7,2,8", f.read())
+
+        Rectangle.save_to_file_csv([])
+        with open("Rectangle.csv", "r") as f:
+            self.assertEqual("[]", f.read())
+
+    def test_load_from_file_csv_first_rectangle(self):
+        """test load from csv file"""
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 5, 6, 2)
+        Rectangle.save_to_file_csv([r1, r2])
+        list_rectangles_output = Rectangle.load_from_file_csv()
+        self.assertEqual(str(r1), str(list_rectangles_output[0]))
