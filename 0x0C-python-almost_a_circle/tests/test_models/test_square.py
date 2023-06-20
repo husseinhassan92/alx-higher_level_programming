@@ -45,20 +45,20 @@ class TestSquare(unittest.TestCase):
 
     def test_attr_validate(self):
         """Test attributes are validated before set"""
-        with self.assertRaisesRegex(TypeError, "width must be an intger"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square("2")
             Square([1])
-        with self.assertRaisesRegex(TypeError, "x must be an intger"):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(3, None)
             Square(3, 5.5)
-        with self.assertRaisesRegex(TypeError, "y must be an intger"):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(3, 5, (2, 2))
         with self.assertRaisesRegex(ValueError,
-                                    "width must be greater than zero"):
+                                    "width must be > 0"):
             Square(-3, 2, 2, 100)
-        with self.assertRaisesRegex(ValueError, "x must be greater than zero"):
+        with self.assertRaisesRegex(ValueError, "x must be > 0"):
             Square(3, -2, 2, 100)
-        with self.assertRaisesRegex(ValueError, "y must be greater than zero"):
+        with self.assertRaisesRegex(ValueError, "y must be > 0"):
             Square(3, 2, -2, 100)
 
     def test_invalid_args(self):
@@ -97,10 +97,10 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(r), '[Square] (10) 10/2 - 10')
         r.update(id=10, size=10, x=10, y=10)
         self.assertEqual(str(r), '[Square] (10) 10/10 - 10')
-        with self.assertRaisesRegex(TypeError, "width must be an intger"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             r.update(10, "10", 10, 10)
         with self.assertRaisesRegex(ValueError,
-                                    "width must be greater than zero"):
+                                    "width must be > 0"):
             r.update(10, -10, 10, 10)
         r.update(no_id=10, n_size=10, x=5, y=4)
         self.assertEqual(str(r), '[Square] (10) 5/4 - 10')

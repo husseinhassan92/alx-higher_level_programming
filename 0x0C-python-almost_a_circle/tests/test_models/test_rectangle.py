@@ -49,26 +49,26 @@ class TestRectangle(unittest.TestCase):
 
     def test_attr_validate(self):
         """Test attributes are validated before set"""
-        with self.assertRaisesRegex(TypeError, "width must be an intger"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle("2", 4)
             Rectangle([1], 3)
-        with self.assertRaisesRegex(TypeError, "height must be an intger"):
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(3, {4})
             Rectangle(3, {"h": 4})
-        with self.assertRaisesRegex(TypeError, "x must be an intger"):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(3, 4, None)
             Rectangle(3, 4, 5.5)
-        with self.assertRaisesRegex(TypeError, "y must be an intger"):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(3, 4, 5, (2, 2))
         with self.assertRaisesRegex(ValueError,
-                                    "width must be greater than zero"):
+                                    "width must be > 0"):
             Rectangle(-3, 4, 2, 2, 100)
         with self.assertRaisesRegex(ValueError,
-                                    "height must be greater than zero"):
+                                    "height must be > 0"):
             Rectangle(3, -4, 2, 2, 100)
-        with self.assertRaisesRegex(ValueError, "x must be greater than zero"):
+        with self.assertRaisesRegex(ValueError, "x must be > 0"):
             Rectangle(3, 4, -2, 2, 100)
-        with self.assertRaisesRegex(ValueError, "y must be greater than zero"):
+        with self.assertRaisesRegex(ValueError, "y must be > 0"):
             Rectangle(3, 4, 2, -2, 100)
 
     def test_invalid_args(self):
@@ -135,10 +135,10 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r), '[Rectangle] (10) 10/1 - 10/10')
         r.update(id=10, width=10, height=10, x=10, y=10)
         self.assertEqual(str(r), '[Rectangle] (10) 10/10 - 10/10')
-        with self.assertRaisesRegex(TypeError, "width must be an intger"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             r.update(10, "10", 10, 10, 10)
         with self.assertRaisesRegex(ValueError,
-                                    "width must be greater than zero"):
+                                    "width must be > 0"):
             r.update(10, -10, 10, 10, 10)
         r.update(no_id=10, n_width=10, height=2, x=5, y=4)
         self.assertEqual(str(r), '[Rectangle] (10) 5/4 - 10/2')
