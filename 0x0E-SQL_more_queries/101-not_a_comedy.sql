@@ -1,11 +1,11 @@
--- script that lists all non-Comedy shows in the database hbtn_0d_tvshows
--- tv_genres table contains only one record where name = Comedy (but the id can be different)
--- each record should display: tv_shows.title
--- results must be sorted in ascending order by the show title
--- can use max two SELECT statements
+-- script that lists all genres from hbtn_0d_tvshows and displays the number of shows linked to each
+-- each record should display: tv_genres.name - number_shows
+-- don’t display a genre that doesn’t have any shows linked
+-- results must be sorted in descending order by the number of shows linked
+-- can use only one SELECT statement
 -- the database name will be passed as an argument of the mysql command
 
-    SELECT tv_shows.title
+SELECT tv_shows.title
       FROM tv_shows
      WHERE tv_shows.title NOT IN (
     SELECT tv_shows.title
