@@ -1,5 +1,6 @@
 #!/usr/bin/node
-let myVar
+
+let myVar;
 if (process.argv.length <= 2){
     myVar = 'No argument';
 } else if (process.argv.length === 3){
