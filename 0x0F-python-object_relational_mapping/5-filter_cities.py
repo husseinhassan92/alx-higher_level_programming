@@ -21,6 +21,7 @@ if __name__ == "__main__":
                  WHERE states.name LIKE %s
                  ORDER BY cities.id ASC"""
     cur.execute(query, (argv[4], ))
-    print(', '.join(["{:s}".format(row[0]) for row in cur.fetchall()]))
+    for row in cur.fetchall():
+        print(','.join(row[0]))
     cur.close()
     conn.close()
