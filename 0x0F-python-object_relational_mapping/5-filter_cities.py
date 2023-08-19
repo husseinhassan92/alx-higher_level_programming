@@ -24,6 +24,6 @@ if __name__ == "__main__":
                  )"""
     cur.execute(query, (argv[4], ))
     for row in cur.fetchall():
-        print(row)
+        print(','.join(row))
     cur.close()
     conn.close()
