@@ -26,4 +26,3 @@ if __name__ == "__main__":
     session.add(new_c)
 
     session.commit()
-    session.close()
