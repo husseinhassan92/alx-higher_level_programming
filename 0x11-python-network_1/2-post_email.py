@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Displays the X-Request-Id header variable of a request to a given URL."""
+"""Sends a POST request to a given URL with a given email."""
 import urllib.request
 import urllib.parse
 from sys import argv
