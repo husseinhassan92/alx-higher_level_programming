@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Displays the X-Request-Id header variable of a request to a given URL."""
+"""given URL & email as params, display response body utf-8, print error codes"""
 import urllib.request
 from sys import argv
 
