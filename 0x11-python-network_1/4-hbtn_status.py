@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-fetch https://intranet.hbtn.io/status; display response
+fetch https://alx-intranet.hbtn.io/status; display response
 """
 import requests
 
