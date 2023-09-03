@@ -13,7 +13,10 @@ if __name__ == "__main__":
         argv[2], argv[1])
     r = requests.get(url)
     commit = r.json()
-    for i in range(10):
-        print("{}: {}".format(
-            commit[i].get("sha"),
-            commit[i].get("author").get("name")))
+    try:
+        for i in range(10):
+            print("{}: {}".format(
+                commit[i].get("sha"),
+                commit[i].get("author").get("name")))
+    except IndexError:
+        pass
