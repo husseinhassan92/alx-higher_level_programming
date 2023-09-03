@@ -9,14 +9,11 @@ import requests
 
 
 if __name__ == "__main__":
-    url = "https://api.github.com/repos/{}/{}/commits".format(
+    url = 'https://api.github.com/repos/{}/{}/commits'.format(
         argv[2], argv[1])
     r = requests.get(url)
-    commit = r.json()
-    try:
-        for i in range(10):
-            print("{}: {}".format(
-                commit[i].get("sha"),
-                commit[i].get("author").get("name")))
-    except IndexError:
-        pass
+    list_commits = r.json()
+    for commit in list_commits[0:10]:
+        print("{}: {}".format(
+                commit.get("sha"),
+                commit.get("commit").get("author").get("name")))
